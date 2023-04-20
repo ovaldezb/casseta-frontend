@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="section">
+    <div class="columns">
+      <div class="column">
+        <div class="box">
+          <table class="table" align="center">
+            <tbody>
+              <tr>
+                <td>Anfitrión</td>
+                <td>{{invitacion.anfitrion}}</td>
+              </tr>
+              <tr>
+                <td>Asunto</td>
+                <td>{{invitacion.asunto}}</td>
+              </tr>
+              <tr>
+                <td>Duración</td>
+                <td>{{invitacion.duracion}}</td>
+              </tr>
+              <tr>
+                <td>Invitado</td>
+                <td>{{invitacion.nombreInvitado}}</td>
+              </tr>
+              <tr>
+                <td>Teleféfono</td>
+                <td>{{invitacion.telefonoInvitado}}</td>
+              </tr>
+              <tr>
+                <td>Correo</td>
+                <td>{{invitacion.correoInvitado}}</td>
+              </tr>
+              <tr *ngIf="isEventValid">
+                <td style="background-color: green;">Fecha Evento</td>
+                <td style="background-color: green;">{{fechaEventoParsed | date:'medium'}}</td>
+              </tr>
+              <tr *ngIf="!isEventValid">
+                <td style="background-color: red;">Fecha Evento</td>
+                <td style="background-color: red;">{{fechaEventoParsed | date:'medium'}}</td>
+              </tr>
+              <tr>
+                <td>Hora Evento</td>
+                <td>{{invitacion.horaEvento}}</td>
+              </tr>
+              <tr>
+                <td>Detalle</td>
+                <td>{{invitacion.horaEvento}}</td>
+              </tr>
+              <tr>
+                <td>Lugar</td>
+                <td>{{invitacion.lugar}}</td>
+              </tr>
+              <tr>
+                <td>Notificar Entrada</td>
+                <td>{{invitacion.notificarEntrada}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="modal is-active" *ngIf="isEventValid">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">Invitación Correcta</p>            
+                <button class="delete" aria-label="close" (click)="closeModal()"></button>
+              </header>
+              <section class="modal-card-body">
+                <h2>Capture la información adicional</h2>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td colspan="2"><input type="text" name="placa" id="" placeholder="PLACA" #placa="ngModel" [(ngModel)]="invitacion.placas"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2"><input type="text" name="tarjeton" id="" placeholder="No de Tarjetón" #tarjeton="ngModel" [(ngModel)]="invitacion.tarjeton"></td>
+                    </tr>
+                    <tr>
+                      <td>Deja Indentificación</td>
+                      <td><input type="checkbox" name="identificacion" id="" #indetificacion="ngModel" [(ngModel)]="invitacion.dejaId"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <footer class="modal-card-foot">
+                <button class="button is-success" (click)="guardarInvitacion()">Guardar</button>
+                <button class="button" (click)="closeModal()">Cancelar</button>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
