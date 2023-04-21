@@ -21,9 +21,10 @@ export class ResultadoComponent implements OnInit {
     
     this.fechaEventoParsed = new Date(this.invitacion.fechaEvento.toString()+' '+this.invitacion.horaEvento);
     let fechaActual = new Date();
-    console.log(fechaActual,this.fechaEventoParsed)
-    if(fechaActual.getTime() > this.fechaEventoParsed.getTime()){
-      if(fechaActual.getDay()===this.fechaEventoParsed.getDay()){
+    this.isEventValid = true;
+        return;
+    if(fechaActual.getTime() >= this.fechaEventoParsed.getTime()){
+      if(fechaActual.getDate()===this.fechaEventoParsed.getDate() && fechaActual.getMonth()===this.fechaEventoParsed.getMonth()){
         this.isEventValid = true;
         return;
       }
@@ -32,25 +33,19 @@ export class ResultadoComponent implements OnInit {
         title:'Error',
         text:'La fecha del evento es anterior al día de hoy, confirmar con el Condomino ',
         icon:'error',
-        confirmButtonText:'cool'
+        confirmButtonText:'Ok'
       });
-    }else if(fechaActual.getTime() < this.fechaEventoParsed.getTime()){
-      this.isEventValid = false;
-      if(fechaActual.getDay() === this.fechaEventoParsed.getDay()){
-        Swal.fire({
-          title:'Error',
-          text:'La hora del evento es posterior a la hora actual, confirmar con el Condomino ',
-          icon:'error',
-          confirmButtonText:'cool'
-        });  
+    }else if(fechaActual.getTime() <= this.fechaEventoParsed.getTime()){
+      if(fechaActual.getDate() === this.fechaEventoParsed.getDate() && fechaActual.getMonth()===this.fechaEventoParsed.getMonth()){
+        this.isEventValid = true;  
         return;
       }
-      
+      this.isEventValid = false;
       Swal.fire({
         title:'Error',
         text:'La fecha del evento es posterior al día de hoy, confirmar con el Condomino ',
         icon:'error',
-        confirmButtonText:'cool'
+        confirmButtonText:'Ok'
       });
     }
   }
@@ -70,6 +65,10 @@ export class ResultadoComponent implements OnInit {
           this.invitacion = new Invitacion('','','',0,'','','','','','','',false,'','',new Date(),false,false, false, 0);
           this._router.navigateByUrl('/');
         });
+  }
+
+  backHome():void{
+    this._router.navigateByUrl('/');
   }
 
   closeModal():void{

@@ -4,6 +4,9 @@
       <div class="column">
         <div class="box">
           <table class="table" align="center">
+            <thead>
+              <td colspan="2" align="center" style="font-weight: 800;">Datos de la Invitación</td>
+            </thead>
             <tbody>
               <tr>
                 <td>Anfitrión</td>
@@ -43,7 +46,7 @@
               </tr>
               <tr>
                 <td>Detalle</td>
-                <td>{{invitacion.horaEvento}}</td>
+                <td>{{invitacion.detalle}}</td>
               </tr>
               <tr>
                 <td>Lugar</td>
@@ -55,38 +58,42 @@
               </tr>
             </tbody>
           </table>
-          <div class="modal is-active" *ngIf="isEventValid">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-              <header class="modal-card-head">
-                <p class="modal-card-title">Invitación Correcta</p>            
-                <button class="delete" aria-label="close" (click)="closeModal()"></button>
-              </header>
-              <section class="modal-card-body">
-                <h2>Capture la información adicional</h2>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td colspan="2"><input type="text" name="placa" id="" placeholder="PLACA" #placa="ngModel" [(ngModel)]="invitacion.placas"></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2"><input type="text" name="tarjeton" id="" placeholder="No de Tarjetón" #tarjeton="ngModel" [(ngModel)]="invitacion.tarjeton"></td>
-                    </tr>
-                    <tr>
-                      <td>Deja Indentificación</td>
-                      <td><input type="checkbox" name="identificacion" id="" #indetificacion="ngModel" [(ngModel)]="invitacion.dejaId"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </section>
-              <footer class="modal-card-foot">
-                <button class="button is-success" (click)="guardarInvitacion()">Guardar</button>
-                <button class="button" (click)="closeModal()">Cancelar</button>
-              </footer>
-            </div>
-          </div>
         </div>
       </div>
+      <div class="column" *ngIf="isEventValid">
+        <div class="box">
+          
+            <header>
+              <p class="modal-card-title" style="text-align: center;">Invitación Correcta</p>            
+            </header>
+
+            <section class="modal-card-body">
+              <h2>Capture la información adicional</h2>
+              <table>
+                <tbody>
+                  <tr>
+                    <td colspan="2"><input type="text" name="placa" id="" placeholder="PLACA" #placa="ngModel" [(ngModel)]="invitacion.placas"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><input type="text" name="tarjeton" id="" placeholder="No de Tarjetón" #tarjeton="ngModel" [(ngModel)]="invitacion.tarjeton"></td>
+                  </tr>
+                  <tr>
+                    <td>Deja Indentificación</td>
+                    <td><input type="checkbox" name="identificacion" id="" #indetificacion="ngModel" [(ngModel)]="invitacion.dejaId"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+            <footer class="modal-card-foot">
+              <button class="button is-success" (click)="guardarInvitacion()">Guardar</button>
+              <button class="button" (click)="closeModal()">Cancelar</button>
+            </footer>
+      </div>
+    </div>
+  </div>
+  <div class="columns" *ngIf="!isEventValid">
+    <div class="column">
+        <button class="button is-success" (click)="backHome()">Regresar</button>
     </div>
   </div>
 </div>
