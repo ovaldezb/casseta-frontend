@@ -21,8 +21,7 @@ export class ResultadoComponent implements OnInit {
     
     this.fechaEventoParsed = new Date(this.invitacion.fechaEvento.toString()+' '+this.invitacion.horaEvento);
     let fechaActual = new Date();
-    this.isEventValid = true;
-        return;
+    
     if(fechaActual.getTime() >= this.fechaEventoParsed.getTime()){
       if(fechaActual.getDate()===this.fechaEventoParsed.getDate() && fechaActual.getMonth()===this.fechaEventoParsed.getMonth()){
         this.isEventValid = true;
@@ -61,9 +60,8 @@ export class ResultadoComponent implements OnInit {
             timer:2000,
             timerProgressBar:true
           });
-          this.closeModal();
           this.invitacion = new Invitacion('','','',0,'','','','','','','',false,'','',new Date(),false,false, false, 0);
-          this._router.navigateByUrl('/');
+          this.backHome();
         });
   }
 
@@ -71,8 +69,5 @@ export class ResultadoComponent implements OnInit {
     this._router.navigateByUrl('/');
   }
 
-  closeModal():void{
-    this.isEventValid = false;
-  }
 
 }
