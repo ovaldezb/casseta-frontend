@@ -3,7 +3,7 @@
     <div class="columns">
       <div class="column">
         <div class="box">
-          <table class="table" align="center">
+          <table class="table is-striped is-bordered" align="center">
             <thead>
               <td colspan="2" align="center" style="font-weight: 800;">Datos de la Invitación</td>
             </thead>
@@ -40,6 +40,14 @@
                 <td style="background-color: red;">Fecha Evento</td>
                 <td style="background-color: red;">{{fechaEventoParsed | date:'medium'}}</td>
               </tr>
+              <tr *ngIf="invitacion.esRecurrente">
+                <td>Evento recurrente</td>
+                <td>{{invitacion.numRepeticiones}} veces</td>
+              </tr>
+              <tr *ngIf="invitacion.esRecurrente">
+                <td>Se repite todos los</td>
+                <td>{{diaEvento}}</td>
+              </tr>
               <tr>
                 <td>Hora Evento</td>
                 <td>{{invitacion.horaEvento}}</td>
@@ -72,13 +80,13 @@
               <table>
                 <tbody>
                   <tr>
-                    <td colspan="2"><input type="text" name="placa" id="" placeholder="PLACA" #placa="ngModel" [(ngModel)]="invitacion.placas"></td>
+                    <td colspan="2"><input type="text" class="input" name="placa" id="" placeholder="PLACA" #placa="ngModel" [(ngModel)]="invitacion.placas"></td>
                   </tr>
                   <tr>
-                    <td colspan="2"><input type="text" name="tarjeton" id="" placeholder="No de Tarjetón" #tarjeton="ngModel" [(ngModel)]="invitacion.tarjeton"></td>
+                    <td colspan="2"><input type="text" class="input" name="tarjeton" id="" placeholder="No de Tarjetón" #tarjeton="ngModel" [(ngModel)]="invitacion.tarjeton"></td>
                   </tr>
                   <tr>
-                    <td>Deja Indentificación</td>
+                    <td><label for="identificacion" class="checkbox">Deja Indentificación</label></td>
                     <td><input type="checkbox" name="identificacion" id="" #indetificacion="ngModel" [(ngModel)]="invitacion.dejaId"></td>
                   </tr>
                 </tbody>

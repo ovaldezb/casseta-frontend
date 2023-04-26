@@ -20,10 +20,11 @@ export class HomeComponent implements OnInit {
     let qrPayload = {
       payload : this.qrCode
     };
-    
+    console.log(qrPayload);
     this._servicioService.sendQrData(JSON.stringify(qrPayload))
         .subscribe(res => {
           if(res.status ==='success'){
+            console.log(res);
             this._router.navigateByUrl('/resultado',{state:res});
           }else{
             Swal.fire({
